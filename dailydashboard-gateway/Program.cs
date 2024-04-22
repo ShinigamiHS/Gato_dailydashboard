@@ -1,12 +1,14 @@
 using Infrastructure.Services;
 
-namespace media_server_api
+namespace dailydashboard_gateway
 {
     public class Program
     {
         public static void Main(string[] args)
         {
             var builder = WebApplication.CreateBuilder(args);
+
+            WebHostBuilder webHostBuilder = new WebHostBuilder();
 
             // Add services to the container.
             ServiceStartup.SetServices(builder.Services);
@@ -16,6 +18,9 @@ namespace media_server_api
             builder.Services.AddSwaggerGen();
 
             var app = builder.Build();
+
+            app.UseDefaultFiles();
+            app.UseStaticFiles();
 
             // Configure the HTTP request pipeline.
             if (app.Environment.IsDevelopment())

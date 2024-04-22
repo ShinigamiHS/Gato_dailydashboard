@@ -5,7 +5,7 @@
     <Nullable>enable</Nullable>
     <ImplicitUsings>enable</ImplicitUsings>
     <InvariantGlobalization>true</InvariantGlobalization>
-    <RootNamespace>media_server_api</RootNamespace>
+    <RootNamespace>dailydashboard_gateway</RootNamespace>
     <UserSecretsId>c7b2e643-20c9-458e-8bef-0ccfe5d95f2e</UserSecretsId>
     <DockerDefaultTargetOS>Linux</DockerDefaultTargetOS>
   </PropertyGroup>
@@ -16,6 +16,8 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\Application.DTO\Application.DTO.csproj" />
+    <ProjectReference Include="..\dailydashboard-client\dailydashboard-client.esproj" />
     <ProjectReference Include="..\Infrastructure.Services\Infrastructure.Services.csproj" />
   </ItemGroup>
 

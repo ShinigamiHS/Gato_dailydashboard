@@ -1,6 +1,6 @@
 ﻿namespace Application.DTO.DataAcquisition
 {
-    public class DataAcquisitionRequest
+    public class DataAcquisitionCommandResponse
     {
     }
 }

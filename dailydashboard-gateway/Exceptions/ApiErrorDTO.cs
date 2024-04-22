@@ -1,4 +1,4 @@
-﻿namespace media_server_api.Exceptions
+﻿namespace dailydashboard_gateway.Exceptions
 {
     public class ApiErrorDTO
     {

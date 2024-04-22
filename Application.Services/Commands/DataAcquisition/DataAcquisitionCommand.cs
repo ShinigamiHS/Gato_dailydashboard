@@ -3,13 +3,13 @@ using MediatR;
 
 namespace Application.Services.Commands.DataAcquisition
 {
-    public class DataAcquisitionCommand : IRequest<DataAcquisitionResponse>
+    public class DataAcquisitionCommand : IRequest<DataAcquisitionCommandResponse>
     {
-        public DataAcquisitionCommand(DataAcquisitionRequest dataAcquisitionRequest)
+        public DataAcquisitionCommand(DataAcquisitionCommandRequest dataAcquisitionRequest)
         {
             this.dataAcquisitionRequest = dataAcquisitionRequest;
         }
 
-        public DataAcquisitionRequest dataAcquisitionRequest { get; }
+        public DataAcquisitionCommandRequest dataAcquisitionRequest { get; }
     }
 }
