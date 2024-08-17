@@ -17,7 +17,6 @@
 
   <ItemGroup>
     <ProjectReference Include="..\Application.DTO\Application.DTO.csproj" />
-    <ProjectReference Include="..\dailydashboard-client\dailydashboard-client.esproj" />
     <ProjectReference Include="..\Infrastructure.Services\Infrastructure.Services.csproj" />
   </ItemGroup>
 

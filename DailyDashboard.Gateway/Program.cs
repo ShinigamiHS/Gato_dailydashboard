@@ -6,9 +6,8 @@ namespace dailydashboard_gateway
     {
         public static void Main(string[] args)
         {
+            var MyAllowSpecificOrigins = "_myAllowSpecificOrigins";
             var builder = WebApplication.CreateBuilder(args);
-
-            WebHostBuilder webHostBuilder = new WebHostBuilder();
 
             // Add services to the container.
             ServiceStartup.SetServices(builder.Services);
@@ -16,6 +15,16 @@ namespace dailydashboard_gateway
             builder.Services.AddControllers();
             builder.Services.AddEndpointsApiExplorer();
             builder.Services.AddSwaggerGen();
+
+            builder.Services.AddCors(options =>
+            {
+                options.AddPolicy(name: MyAllowSpecificOrigins,
+                                  policy =>
+                                  {
+                                      policy.WithOrigins("http://localhost:5173");
+                                      policy.WithOrigins("http://localhost:5173");
+                                  });
+            });
 
             var app = builder.Build();
 
@@ -31,9 +40,13 @@ namespace dailydashboard_gateway
 
             app.UseHttpsRedirection();
 
+
+            app.UseCors(MyAllowSpecificOrigins);
             app.UseAuthorization();
 
             app.MapControllers();
+
+            app.MapFallbackToFile("/index.html");
 
             app.Run();
         }

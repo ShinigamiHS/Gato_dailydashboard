@@ -9,17 +9,17 @@ EXPOSE 8081
 FROM mcr.microsoft.com/dotnet/sdk:8.0 AS build
 ARG BUILD_CONFIGURATION=Release
 WORKDIR /src
-COPY ["media-server-api/media-server-api.csproj", "media-server-api/"]
-RUN dotnet restore "./media-server-api/./media-server-api.csproj"
+COPY ["DailyDashboard.Gateway/DailyDashboard.Gateway.csproj", "DailyDashboard.Gateway/"]
+RUN dotnet restore "./DailyDashboard.Gateway/./DailyDashboard.Gateway.csproj"
 COPY . .
-WORKDIR "/src/media-server-api"
-RUN dotnet build "./media-server-api.csproj" -c $BUILD_CONFIGURATION -o /app/build
+WORKDIR "/src/DailyDashboard.Gateway"
+RUN dotnet build "./DailyDashboard.Gateway.csproj" -c $BUILD_CONFIGURATION -o /app/build
 
 FROM build AS publish
 ARG BUILD_CONFIGURATION=Release
-RUN dotnet publish "./media-server-api.csproj" -c $BUILD_CONFIGURATION -o /app/publish /p:UseAppHost=false
+RUN dotnet publish "./DailyDashboard.Gateway.csproj" -c $BUILD_CONFIGURATION -o /app/publish /p:UseAppHost=false
 
 FROM base AS final
 WORKDIR /app
 COPY --from=publish /app/publish .
-ENTRYPOINT ["dotnet", "media-server-api.dll"]
+ENTRYPOINT ["dotnet", "DailyDashboard.Gateway.dll"]
